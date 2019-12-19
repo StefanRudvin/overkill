@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   name: kafka1
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     app: kafka1
   template:
