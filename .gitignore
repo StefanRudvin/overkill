@@ -1,9 +1,10 @@
 /server/play-samples-play-scala-starter-example/target/
 server/target/
 
-
+.idea/
 *.class
 *.log
+*.DS_STORE
 
 bin/
 /db
