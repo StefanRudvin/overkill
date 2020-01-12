@@ -4,10 +4,10 @@ metadata:
   name: cassandra-data
 spec:
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: fast
   mountOptions:

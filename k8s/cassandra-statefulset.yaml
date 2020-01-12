@@ -78,6 +78,7 @@ spec:
         volumeMounts:
         - name: cassandra-data
           mountPath: /cassandra_data
+          subPath: $(POD_NAME)
   # These are converted to volume claims by the controller
   # and mounted at the paths mentioned above.
   # do not use these in production until ssd GCEPersistentDisk or other ssd pd
@@ -85,16 +86,8 @@ spec:
   - metadata:
       name: cassandra-data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: [ "ReadWriteMany" ]
       storageClassName: fast
       resources:
         requests:
           storage: 1Gi
----
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: fast
-provisioner: k8s.io/minikube-hostpath
-parameters:
-  type: pd-ssd
