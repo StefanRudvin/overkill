@@ -1,0 +1,127 @@
+Overkill
+
+An overkill implementation of a messaging platform using Lambda architecture.
+
+Kafka streams to process messages, create analytics
+Cassandra for storage.
+Web sockets via another kafka stream for
+
+
+
+TODO
+Kafka `messages` topic
+Server has an API endpoint and a consumer that produces messages to the topic
+The topic uses KSQL to do some bot filtering for example.
+Consumer on server to read messages and save to Cassandra
+Another Consumer to send messages to websocket connections to all clients.
+
+
+Kafka topic `Messages`
+
+Model
+
+Message:
+- id
+- text
+- createdAt
+- modifiedAt
+
+User:
+- Username
+- id
+- createdAt
+- modifiedAt
+
+Pivot table - connect users to messages
+- userId
+- portalId
+
+
+Server
+
+sbt run
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+kubeadm: the command to bootstrap the cluster.
+
+kubelet: the component that runs on all of the machines in your cluster and does things like starting pods and containers.
+
+kubectl: the command line util to talk to your cluster.
+
+/etc/hosts
+192.168.99.110 kube-master.test.com kube-master
+192.168.99.111 kube-slave-1.test.com kube-slave-1
+192.168.99.112 kubes-lave-2.test.com kube-slave-2
+
+
+New Ubuntu installation
+Ip set to 192.168.1.110
+
+/etc/hosts
+shared network adapter
+
+sudo vi /etc/network/interfaces
+sudo adduser rudi vboxsf
+aliases alias.sh
+
+install kubeadm, kubectl, openssh, network tools
+
+
+    You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+
+
+  kubectl get pods --all-namespaces
+
+https://dev.to/isabolic99/how-to-set-host-only-adapter-on-vm-virtual-box-2jka
+
+https://www.profiq.com/kubernetes-cluster-setup-using-virtual-machines/
+
+sudo kubeadm init --apiserver-advertise-address=192.168.99.110 --pod-network-cidr=10.217.0.0/16
+
+- set /etc/host
+- set ip host
+sudo swapoff -a
+
+
+enp0s3
+enp0s8
+
+Winukka salasana
+Porkkana1&
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface host-only adapter
+auto enp0s3
+allow-hotplug enp0s3
+iface enp0s3 inet static
+address 192.168.99.101
+netmask 255.255.255.0
+
+# The NAT
+auto enp0s8
+iface enp0s8 inet dhcp
+
+
+kubeadm join 192.168.99.110:6443 --token dv6bh0.5877c0wedbyu0td8 \
+    --discovery-token-ca-cert-hash sha256:13d799106c9947bdcf9478988695635ccf1d34b2e94d30e4685662a6a9fffc7a
